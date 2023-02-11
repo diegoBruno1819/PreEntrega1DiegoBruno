@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { 
     Text,
     ButtonGroup,
@@ -7,13 +7,17 @@ import {
     Center,
 } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
+import { CartContext } from './context/CartContext';
 
 const ItemCount = ({ stock }) => {
-    const [count, setCount] = useState(1);
 
-    const onAdd = () => {
+  const { cart, incremente, decrement, reset } = useContext(CartContext)
+
+    /* const [count, setCount] = useState(1); */
+
+    /* const onAdd = () => {
         setCount(count -1);
-    }
+    } */
 
   return (
     <>
@@ -23,13 +27,13 @@ const ItemCount = ({ stock }) => {
             <IconButton icon={<MinusIcon />} isDisabled />
           </Tooltip>
         ) : (
-          <IconButton icon={<MinusIcon />} onClick={onSubstract} />
+          <IconButton icon={<MinusIcon />} onClick={decrement} />
         )}
         <Center w="50px" h="30px">
-          <Text as="b">{count}</Text>
+          <Text as="b">{cart}</Text>
         </Center>
         {count < stock ? (
-          <IconButton icon={<AddIcon />} onClick={onAdd} />
+          <IconButton icon={<AddIcon />} onClick={incremente} />
         ) : (
           <Tooltip label="stock limit reached" placement="bottom">
             <IconButton icon={<AddIcon />} isDisabled />

@@ -5,7 +5,7 @@ const ItemList = ({ magxs }) => {
   return (
     <>
       <Container maxW="container.sm" className="main-catalogue">
-        {bikes?.map((magx) => (
+        {magxs?.map((magx) => (
           <Item
             key={magx.id}
             id={magx.id}
